@@ -1,0 +1,26 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Tytuł</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Dostępność</th>
+        <th scope="col">Opcje</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.id }}</td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.available }}</td>
+        <td>
+          <button class="btn btn-info" *ngIf="adminLogged" (click)="deleteBook(book.id)">Usuń</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
