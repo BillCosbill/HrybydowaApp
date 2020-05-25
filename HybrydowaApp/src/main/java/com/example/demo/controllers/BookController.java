@@ -5,7 +5,6 @@ import com.example.demo.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +47,7 @@ public class BookController {
 
         if(book.isPresent()){
             bookRepository.delete(book.get());
+            System.out.println("Pomyślnie usunięto książkę");
         }
         else {
             System.out.println("Nie znaleziono książki poprzez id");

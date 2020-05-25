@@ -1,5 +1,32 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nazwa</th>
+        <th scope="col">Role</th>
+        <th scope="col">Admin</th>
+        <th scope="col">Email</th>
+        <th scope="col">Książki</th>
+        <th scope="col">Opcje</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.roles }}</td>
+        <td>{{ user.isAdmin }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.books }}</td>
+        <td>
+          <button (click)="giveAdmin(user.id)">Admin</button>
+          <button (click)="delete(user.id)">Usuń</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <button (click)="checkIfAdmins()">Wyszukaj adminów</button>
 </div>
