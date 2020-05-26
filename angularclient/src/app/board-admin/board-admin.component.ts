@@ -11,7 +11,6 @@ import {User} from '../model/user';
 export class BoardAdminComponent implements OnInit {
 
   users: User[] = [];
-  role: string;
 
   constructor(private userService: UserService) { }
 
@@ -28,20 +27,20 @@ export class BoardAdminComponent implements OnInit {
 
   private checkIfAdmins() {
     this.users.forEach(x => {
-      if (Object.values(x.roles[0]).includes('ROLE_ADMIN')) {
-        x.isAdmin = true;
-      } else {
-        x.isAdmin = false;
-      }
+      x.isAdmin = Object.values(x.roles[0]).includes('ROLE_ADMIN');
     });
   }
 
-  giveAdmin(id: string) {
+  giveAdmin(id: number) {
+    this.userService.giveAdmin(id).subscribe(result => this.refreshData());
+  }
 
+  giveUser(id: number) {
+    this.userService.giveUser(id).subscribe(result => this.refreshData());
   }
 
   // TODO NIE DZIAŁA USUWANIE UŻYTKOWNIKÓW
   delete(id: number) {
-    this.userService.delete(id);
+    this.userService.delete(id).subscribe(result => this.refreshData());
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 import {User} from '../model/user';
 
 const API_URL = 'http://localhost:8081/api/test/';
@@ -12,21 +12,30 @@ export class UserService {
 
   private usersUrl: string;
   private deleteUrl: string;
+  private giveAdminUrl: string;
+  private giveUserUrl: string;
 
   constructor(private http: HttpClient) {
     this.usersUrl = 'http://localhost:8081/users';
     this.deleteUrl = 'http://localhost:8081/userDelete';
+    this.giveAdminUrl = 'http://localhost:8081/giveAdmin';
+    this.giveUserUrl = 'http://localhost:8081/giveUser';
   }
 
   public findAll(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl);
   }
 
-  // TODO NIE DZIAŁA USUWANIE UŻYTKOWNIKÓW
   public delete(id: number){
-    console.log('usuwamy');
-    console.log(id);
-    return this.http.get<User>(this.deleteUrl+'?id='+id);
+    return this.http.get(this.deleteUrl+'?id='+id);
+  }
+
+  public giveAdmin(id: number){
+    return this.http.get(this.giveAdminUrl+'?id='+id);
+  }
+
+  public giveUser(id: number){
+    return this.http.get(this.giveUserUrl+'?id='+id);
   }
 
   public getPublicContent(): Observable<any> {

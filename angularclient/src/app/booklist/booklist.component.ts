@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Book} from "../model/book";
-import {BookService} from "../services/book.service";
-import {TokenStorageService} from "../services/token-storage.service";
+import {Book} from '../model/book';
+import {BookService} from '../services/book.service';
+import {TokenStorageService} from '../services/token-storage.service';
 
 @Component({
   selector: 'app-booklist',
@@ -29,7 +29,7 @@ export class BooklistComponent implements OnInit {
     this.refreshData();
   }
 
-  deleteBook(id: number){
+  deleteBook(id: number) {
     this.bookService.delete(id).subscribe(result => this.refreshData());
   }
 

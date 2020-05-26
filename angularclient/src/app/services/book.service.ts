@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Book} from "../model/book";
-import {Observable} from "rxjs";
+import {HttpClient} from '@angular/common/http';
+import {Book} from '../model/book';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class BookService {
   }
 
   public delete(id: number){
-    return this.http.get<Book>(this.deleteUrl+'?id='+id);
+    return this.http.get(this.deleteUrl+'?id='+id);
   }
 
 
