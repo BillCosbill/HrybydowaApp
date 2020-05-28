@@ -15,6 +15,7 @@ import {FormsModule} from '@angular/forms';
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { BooklistComponent } from './booklist/booklist.component';
 import { BookaddComponent } from './bookadd/bookadd.component';
+import { MybooksComponent } from './mybooks/mybooks.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BookaddComponent } from './bookadd/bookadd.component';
     BoardAdminComponent,
     BoardUserComponent,
     BooklistComponent,
-    BookaddComponent
+    BookaddComponent,
+    MybooksComponent
   ],
   imports: [
     BrowserModule,

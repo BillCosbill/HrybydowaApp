@@ -14,12 +14,14 @@ export class UserService {
   private deleteUrl: string;
   private giveAdminUrl: string;
   private giveUserUrl: string;
+  private findUserUrl: string;
 
   constructor(private http: HttpClient) {
     this.usersUrl = 'http://localhost:8081/users';
     this.deleteUrl = 'http://localhost:8081/userDelete';
     this.giveAdminUrl = 'http://localhost:8081/giveAdmin';
     this.giveUserUrl = 'http://localhost:8081/giveUser';
+    this.findUserUrl = 'http://localhost:8081/findUser';
   }
 
   public findAll(): Observable<User[]> {
@@ -28,6 +30,10 @@ export class UserService {
 
   public delete(id: number){
     return this.http.get(this.deleteUrl+'?id='+id);
+  }
+
+  public findUser(id: number){
+    return this.http.get<User>(this.findUserUrl+'?id='+id);
   }
 
   public giveAdmin(id: number){

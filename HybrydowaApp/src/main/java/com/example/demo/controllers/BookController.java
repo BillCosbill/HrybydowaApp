@@ -71,4 +71,56 @@ public class BookController {
             System.out.println("Nie znaleziono książki poprzez id");
         }
     }
+
+
+    @GetMapping("/rentBook")
+    public void rentBook(@RequestParam long idBook, @RequestParam long idUser){
+        Optional<Book> book = bookRepository.findById(idBook);
+        Optional<User> user = userRepository.findById(idUser);
+
+        if(book.isPresent() && user.isPresent()){
+
+            if(book.get().isAvailable()){
+                book.get().setAvailable(false);
+                user.get().addBook(book.get());
+
+                bookRepository.save(book.get());
+                userRepository.save(user.get());
+
+                System.out.println(user.get().getBooks());
+                System.out.println("Pomyślnie wypożyczono książkę");
+            } else {
+                System.out.println("Książka jest niedostępna");
+            }
+
+        } else {
+            System.out.println("Książka o id " + idBook + ", lub użytkownik o id " + idUser +" - nie istnieje");
+        }
+    }
+
+    @GetMapping("/returnBook")
+    public void returnBook(@RequestParam long idBook, @RequestParam long idUser){
+        Optional<Book> book = bookRepository.findById(idBook);
+        Optional<User> user = userRepository.findById(idUser);
+
+        if(book.isPresent() && user.isPresent()){
+
+            if(!book.get().isAvailable()){
+                book.get().setAvailable(true);
+                user.get().removeBook(book.get());
+
+                bookRepository.save(book.get());
+                userRepository.save(user.get());
+
+                System.out.println(user.get().getBooks());
+                System.out.println("Pomyślnie zwrócono książkę");
+            } else {
+                System.out.println("Książka jest już zwrócona");
+            }
+
+        } else {
+            System.out.println("Książka o id " + idBook + ", lub użytkownik o id " + idUser +" - nie istnieje");
+        }
+    }
+
 }

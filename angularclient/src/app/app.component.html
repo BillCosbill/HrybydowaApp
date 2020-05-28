@@ -10,6 +10,9 @@
       <li class="nav-item">
         <a href="/addbook" class="nav-link" *ngIf="adminLogged" routerLink="addbook">Add book </a>
       </li>
+      <li class="nav-item">
+        <a href="/mybooks" class="nav-link" *ngIf="isLoggedIn" routerLink="mybooks">My books </a>
+      </li>
       <li class="nav-item" *ngIf="adminLogged">
         <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
       </li>

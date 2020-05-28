@@ -10,16 +10,18 @@ import {AdminguardService} from "./guards/adminguard.service";
 import {UserguardService} from "./guards/userguard.service";
 import {BooklistComponent} from "./booklist/booklist.component";
 import {BookaddComponent} from "./bookadd/bookadd.component";
+import {MybooksComponent} from './mybooks/mybooks.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'books', component: BooklistComponent, canActivate:[UserguardService] },
-  { path: 'addbook', component: BookaddComponent, canActivate:[UserguardService] },
-  { path: 'profile', component: ProfileComponent, canActivate:[UserguardService] },
-  { path: 'user', component: BoardUserComponent, canActivate:[UserguardService] },
-  { path: 'admin', component: BoardAdminComponent, canActivate:[AdminguardService] },
+  { path: 'books', component: BooklistComponent, canActivate: [UserguardService] },
+  { path: 'addbook', component: BookaddComponent, canActivate: [UserguardService] },
+  { path: 'profile', component: ProfileComponent, canActivate: [UserguardService] },
+  { path: 'mybooks', component: MybooksComponent, canActivate: [UserguardService] },
+  { path: 'user', component: BoardUserComponent, canActivate: [UserguardService] },
+  { path: 'admin', component: BoardAdminComponent, canActivate: [AdminguardService] },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

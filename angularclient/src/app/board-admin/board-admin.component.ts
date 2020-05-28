@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../services/user.service";
 import {Book} from '../model/book';
 import {User} from '../model/user';
+import {applySourceSpanToExpressionIfNeeded} from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-board-admin',
@@ -39,7 +40,6 @@ export class BoardAdminComponent implements OnInit {
     this.userService.giveUser(id).subscribe(result => this.refreshData());
   }
 
-  // TODO NIE DZIAŁA USUWANIE UŻYTKOWNIKÓW
   delete(id: number) {
     this.userService.delete(id).subscribe(result => this.refreshData());
   }

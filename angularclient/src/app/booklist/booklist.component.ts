@@ -14,15 +14,17 @@ export class BooklistComponent implements OnInit {
   books: Book[];
   adminLogged = false;
   isLoggedIn = false;
+  currentUser: any;
 
   constructor(private bookService: BookService, private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
+    this.currentUser = this.tokenStorageService.getUser();
+
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
+      this.roles = this.currentUser.roles;
       this.adminLogged = this.roles.includes('ROLE_ADMIN');
     }
 
@@ -38,5 +40,11 @@ export class BooklistComponent implements OnInit {
     this.bookService.findAll().subscribe(data => {
       this.books = data;
     });
+  }
+
+  rent(idBook: number) {
+    this.bookService.rent(idBook, this.currentUser.id).subscribe(result => this.refreshData());
+    this.tokenStorageService.saveUser(this.currentUser);
+    this.tokenStorageService.getUser();
   }
 }

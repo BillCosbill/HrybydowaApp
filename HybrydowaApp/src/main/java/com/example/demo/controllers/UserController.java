@@ -39,6 +39,17 @@ public class UserController {
         }
     }
 
+    @GetMapping("/findUser")
+    public User findUser(@RequestParam long id){
+        Optional<User> user = userRepository.findById(id);
+        if(!user.isPresent()){
+            System.out.println("Brak użytkownika o podanym id");
+            return null;
+        } else {
+            return user.get();
+        }
+    }
+
     @GetMapping("/giveAdmin")
     void giveAdmin(@RequestParam long id){
         Optional<User> user = userRepository.findById(id);

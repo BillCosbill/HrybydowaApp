@@ -21,13 +21,13 @@
         <td>{{ user.email }}</td>
         <td>{{ user.books }}</td>
         <td>
-          <button (click)="giveAdmin(user.id)">Admin</button>
-          <button (click)="giveUser(user.id)">User</button>
-          <button (click)="delete(user.id)">Usuń</button>
+          <button class="btn btn-info" (click)="giveAdmin(user.id)">Admin</button>
+          <button class="btn btn-info" (click)="giveUser(user.id)">User</button>
+          <button class="btn btn-info" (click)="delete(user.id) ">Usuń</button>
         </td>
       </tr>
       </tbody>
     </table>
   </div>
-  <button (click)="checkIfAdmins()">Wyszukaj adminów</button>
+  <button class="btn btn-info" (click)="checkIfAdmins()">Wyszukaj adminów</button>
 </div>
