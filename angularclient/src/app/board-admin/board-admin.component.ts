@@ -13,6 +13,8 @@ export class BoardAdminComponent implements OnInit {
 
   users: User[] = [];
 
+  searchText;
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {

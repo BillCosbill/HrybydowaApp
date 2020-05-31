@@ -17,6 +17,8 @@ export class MybooksComponent implements OnInit {
   currentUser: any;
   userId: number;
 
+  searchText;
+
   constructor(private bookService: BookService, private tokenStorageService: TokenStorageService, private userService: UserService) { }
 
   ngOnInit() {

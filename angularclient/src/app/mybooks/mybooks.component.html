@@ -1,21 +1,24 @@
 <div class="card my-5">
+  <div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search by id, title, author, available...">
+  </div>
   <div class="card-body">
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
       <tr>
         <th scope="col">Id</th>
-        <th scope="col">Tytuł</th>
-        <th scope="col">Autor</th>
-        <th scope="col">Opcje</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Options</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let book of books">
+      <tr *ngFor="let book of books | filter:searchText">
         <td>{{ book.id }}</td>
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
         <td>
-          <button class="btn btn-info" (click)="return(book.id)">Zwróć</button>
+          <button class="btn btn-info" (click)="return(book.id)">Return</button>
         </td>
       </tr>
       </tbody>

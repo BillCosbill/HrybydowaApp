@@ -16,6 +16,8 @@ export class BooklistComponent implements OnInit {
   isLoggedIn = false;
   currentUser: any;
 
+  searchText;
+
   constructor(private bookService: BookService, private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {

@@ -16,6 +16,8 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { BooklistComponent } from './booklist/booklist.component';
 import { BookaddComponent } from './bookadd/bookadd.component';
 import { MybooksComponent } from './mybooks/mybooks.component';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { MybooksComponent } from './mybooks/mybooks.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
