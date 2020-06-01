@@ -19,15 +19,26 @@ public class Book {
     @Size(max = 50)
     private String author;
 
+    private int published_year;
+
     private boolean available;
 
     public Book() {
     }
 
-    public Book(String title, String author) {
+    public Book(String title, String author, int published_year) {
         this.title = title;
         this.author = author;
+        this.published_year = published_year;
         this.available = true;
+    }
+
+    public int getPublished_year() {
+        return published_year;
+    }
+
+    public void setPublished_year(int published_year) {
+        this.published_year = published_year;
     }
 
     public Long getId() {

@@ -87,7 +87,6 @@ public class BookController {
                 bookRepository.save(book.get());
                 userRepository.save(user.get());
 
-                System.out.println(user.get().getBooks());
                 System.out.println("Pomyślnie wypożyczono książkę");
             } else {
                 System.out.println("Książka jest niedostępna");

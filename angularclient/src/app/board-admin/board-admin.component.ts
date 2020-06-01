@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../services/user.service";
-import {Book} from '../model/book';
-import {User} from '../model/user';
+import {UserService} from "../_services/user.service";
+import {Book} from '../_model/book';
+import {User} from '../_model/user';
 import {applySourceSpanToExpressionIfNeeded} from '@angular/compiler/src/output/output_ast';
 
 @Component({

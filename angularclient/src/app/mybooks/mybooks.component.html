@@ -9,6 +9,7 @@
         <th scope="col">Id</th>
         <th scope="col">Title</th>
         <th scope="col">Author</th>
+        <th scope="col">Year</th>
         <th scope="col">Options</th>
       </tr>
       </thead>
@@ -17,6 +18,7 @@
         <td>{{ book.id }}</td>
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
+        <td>{{ book.published_year }}</td>
         <td>
           <button class="btn btn-info" (click)="return(book.id)">Return</button>
         </td>
