@@ -1,6 +1,8 @@
 <div class="card my-5">
   <div class="search-hero">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search by id, title, author...">
+    <input [(ngModel)]="searchText" autocomplete="off" class="form-control" name="search"
+           placeholder="&#61442;  Search by id, title, author..."
+           type="text">
   </div>
   <div class="card-body">
     <table class="table table-bordered table-striped">
@@ -9,7 +11,7 @@
         <th scope="col">Id</th>
         <th scope="col">Title</th>
         <th scope="col">Author</th>
-        <th scope="col">Year</th>
+        <th scope="col">Publication year</th>
         <th scope="col">Available</th>
         <th scope="col">Options</th>
       </tr>
@@ -19,7 +21,7 @@
         <td>{{ book.id }}</td>
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
-        <td>{{ book.published_year }}</td>
+        <td>{{ book.publicationYear }}</td>
         <td>{{ book.available }}</td>
         <td>
           <button class="btn btn-info" *ngIf="book.available" (click)="rent(book.id)">Rent</button>

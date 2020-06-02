@@ -7,7 +7,7 @@
                class="form-control"
                id="title"
                name="title"
-               placeholder="Title"
+               placeholder="Enter a booke title . . ."
                required #title="ngModel">
       </div>
       <div [hidden]="!title.pristine" class="alert alert-danger">Title is required</div>
@@ -19,24 +19,25 @@
                class="form-control"
                id="author"
                name="author"
-               placeholder="Author"
+               placeholder="Enter an author . . ."
                required #author="ngModel">
         <div [hidden]="!author.pristine" class="alert alert-danger">Author is required</div>
       </div>
 
       <div class="form-group">
-        <label for="published_year">Year of publication</label>
-        <input type="text" [(ngModel)]="book.published_year"
+        <label for="publicationYear">Year of publication</label>
+        <input #publicationYear="ngModel" [(ngModel)]="book.publicationYear"
                class="form-control"
-               id="published_year"
-               name="published_year"
-               placeholder="Year of publication"
-               required #published_year="ngModel">
-        <div [hidden]="!published_year.pristine" class="alert alert-danger">Year of publication is required</div>
+               id="publicationYear"
+               name="publicationYear"
+               placeholder="Enter year of publication . . ."
+               required type="number">
+        <div [hidden]="!publicationYear.pristine" class="alert alert-danger">Year of publication is required</div>
       </div>
 
       <button type="submit" [disabled]="!userForm.form.valid"
-              class="btn btn-info">Save</button>
+              class="btn btn-info">Save
+      </button>
 
     </form>
   </div>
