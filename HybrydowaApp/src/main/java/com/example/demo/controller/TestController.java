@@ -21,8 +21,8 @@ public class TestController {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
 
-        Role role1 = new Role(ERole.ROLE_USER);
-        Role role2 = new Role(ERole.ROLE_ADMIN);
+        Role role1 = new Role(RoleEnum.ROLE_USER);
+        Role role2 = new Role(RoleEnum.ROLE_ADMIN);
 
         Set<Role> user = new HashSet<>();
         Set<Role> admin = new HashSet<>();

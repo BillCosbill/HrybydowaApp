@@ -7,7 +7,9 @@
 
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel"/>
+        <input #username="ngModel" [(ngModel)]="form.username" class="form-control" maxlength="20" minlength="3"
+               name="username"
+               required type="text"/>
         <div class="alert-danger" *ngIf="f.submitted && username.invalid">
           <div *ngIf="username.errors.required">Username is required</div>
           <div *ngIf="username.errors.minlength">
@@ -32,7 +34,9 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel"/>
+        <input #password="ngModel" [(ngModel)]="form.password" class="form-control" minlength="6" name="password"
+               required
+               type="password"/>
         <div class="alert-danger" *ngIf="f.submitted && password.invalid">
           <div *ngIf="password.errors.required">Password is required</div>
           <div *ngIf="password.errors.minlength">
@@ -42,18 +46,18 @@
       </div>
 
       <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
+        <button class="btn btn-primary btn-block">Add user</button>
       </div>
 
       <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
+        Adding user failed! <br/>{{ errorMessage }}
       </div>
 
     </form>
 
 
     <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
+      User created successfully.
     </div>
   </div>
 </div>
