@@ -11,12 +11,14 @@ export class BookService {
   private deleteUrl: string;
   private rentUrl: string;
   private returnUrl: string;
+  private api: string;
 
   constructor(private http: HttpClient) {
-    this.booksUrl = 'http://localhost:8081/books';
-    this.deleteUrl = 'http://localhost:8081/bookDelete';
-    this.rentUrl = 'http://localhost:8081/rentBook';
-    this.returnUrl = 'http://localhost:8081/returnBook';
+    this.api = 'http://localhost:8080/api/books';
+    this.booksUrl = this.api + '/all';
+    this.deleteUrl = this.api;
+    this.rentUrl = '/rentBook';
+    this.returnUrl = '/returnBook';
   }
 
   public findAll(): Observable<Book[]> {
@@ -28,7 +30,7 @@ export class BookService {
   }
 
   public delete(id: number){
-    return this.http.get(this.deleteUrl + '?id=' + id);
+    return this.http.delete(this.deleteUrl + '?id=' + id);
   }
 
   public rent(idBook: number, idUser: number) {
