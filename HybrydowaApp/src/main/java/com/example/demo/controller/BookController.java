@@ -1,7 +1,7 @@
-package com.example.demo.controllers;
+package com.example.demo.controller;
 
-import com.example.demo.models.Book;
-import com.example.demo.models.User;
+import com.example.demo.model.Book;
+import com.example.demo.model.User;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

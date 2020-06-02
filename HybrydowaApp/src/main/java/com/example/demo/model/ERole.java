@@ -1,4 +1,4 @@
-package com.example.demo.models;
+package com.example.demo.model;
 
 public enum ERole {
     ROLE_USER,
