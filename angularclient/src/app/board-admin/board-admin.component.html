@@ -1,6 +1,8 @@
 <div class="card my-5">
   <div class="search-hero">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search by id, name, role, admin, email, books, options...">
+    <input [(ngModel)]="searchText" autocomplete="off" class="form-control" name="search"
+           placeholder="&#61442;  Search by id, name, role, admin, email, books, options..."
+           type="text">
   </div>
   <div class="card-body">
     <table class="table table-bordered table-striped">
@@ -8,8 +10,7 @@
       <tr>
         <th scope="col">Id</th>
         <th scope="col">Name</th>
-        <th scope="col">Role</th>
-        <th scope="col">Admin</th>
+        <th scope="col">Roles</th>
         <th scope="col">Email</th>
         <th scope="col">Options</th>
       </tr>
@@ -18,8 +19,11 @@
       <tr *ngFor="let user of users | filter:searchText">
         <td>{{ user.id }}</td>
         <td>{{ user.username }}</td>
-        <td>{{ user.roles }}</td>
-        <td>{{ user.isAdmin }}</td>
+        <td>
+          <ng-container *ngFor="let role of user.roles">
+            {{makePrettyRoleName(role.name)}}<br>
+          </ng-container>
+        </td>
         <td>{{ user.email }}</td>
         <td>
           <button class="btn btn-info" (click)="giveAdmin(user.id)">Admin</button>
