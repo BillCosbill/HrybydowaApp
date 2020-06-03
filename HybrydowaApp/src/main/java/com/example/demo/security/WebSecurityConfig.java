@@ -1,6 +1,5 @@
 package com.example.demo.security;
 
-import com.example.demo.model.RoleEnum;
 import com.example.demo.security.jwt.AuthEntryPointJwt;
 import com.example.demo.security.jwt.AuthTokenFilter;
 import com.example.demo.security.services.UserDetailsServiceImpl;
@@ -54,14 +53,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable()
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/test/**").permitAll()
-                .antMatchers("/home", "/user/add").permitAll()
+        http.cors().and()// Cross-Origin Resource Sharing - needed for communicating with frontend
+                .csrf().disable() // disabling protection against CSRF attacks
+                .exceptionHandling()
+                .authenticationEntryPoint(unauthorizedHandler)
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers("/api/auth/**", "/api/test/**", "/home", "/user/add").permitAll()
                 .antMatchers("/user/add", "/userDelete", "/giveUser", "/giveAdmin", "/bookDelete")
-                .hasAuthority(RoleEnum.ROLE_ADMIN.getValue()) //nie działa, rozkminię to jeszcze (Paweł)
+                .hasRole("ADMIN")
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

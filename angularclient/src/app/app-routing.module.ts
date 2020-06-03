@@ -15,11 +15,11 @@ import {MybooksComponent} from './mybooks/mybooks.component';
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'user/add', component: RegisterComponent},
+  {path: 'user/add', component: RegisterComponent, canActivate: [AdminguardService]},
   {path: 'books', component: BooklistComponent, canActivate: [UserguardService]},
-  {path: 'addbook', component: BookaddComponent, canActivate: [UserguardService]},
+  {path: 'books/add', component: BookaddComponent, canActivate: [AdminguardService]},
   {path: 'profile', component: ProfileComponent, canActivate: [UserguardService]},
-  {path: 'mybooks', component: MybooksComponent, canActivate: [UserguardService]},
+  {path: 'books/my', component: MybooksComponent, canActivate: [UserguardService]},
   {path: 'user', component: BoardUserComponent, canActivate: [UserguardService]},
   {path: 'admin', component: BoardAdminComponent, canActivate: [AdminguardService]},
   {path: '', redirectTo: 'home', pathMatch: 'full'}

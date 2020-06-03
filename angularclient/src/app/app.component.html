@@ -2,34 +2,34 @@
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
+        <a class="nav-link" routerLink="home">Home </a>
       </li>
       <li class="nav-item">
-        <a href="/books" class="nav-link" *ngIf="isLoggedIn" routerLink="books">Books </a>
+        <a class="nav-link" *ngIf="isLoggedIn" routerLink="books">Books </a>
       </li>
       <li class="nav-item">
-        <a href="/addbook" class="nav-link" *ngIf="adminLogged" routerLink="addbook">Add book </a>
+        <a *ngIf="adminLogged" class="nav-link" routerLink="books/add">Add book </a>
       </li>
       <li class="nav-item">
-        <a href="/mybooks" class="nav-link" *ngIf="isLoggedIn" routerLink="mybooks">My books </a>
+        <a *ngIf="isLoggedIn" class="nav-link" routerLink="books/my">My books </a>
       </li>
       <li class="nav-item" *ngIf="adminLogged">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        <a class="nav-link" routerLink="admin">Admin Board</a>
       </li>
       <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+        <a class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
       </li>
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
+        <a class="nav-link" routerLink="login">Login</a>
       </li>
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        <a class="nav-link" routerLink="profile">{{ username }}</a>
       </li>
       <li class="nav-item">
         <a href class="nav-link" (click)="logout()">LogOut</a>
