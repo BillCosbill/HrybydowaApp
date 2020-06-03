@@ -18,8 +18,8 @@ import java.util.Set;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
     public UserService(UserRepository userRepository, RoleRepository roleRepository) {
@@ -72,7 +72,7 @@ public class UserService {
     }
 
     public void delete(Long id){
-        userRepository.findById(id).ifPresent(value -> userRepository.delete(value));
+        userRepository.findById(id).ifPresent(userRepository::delete);
     }
 
     public User save(User user) {

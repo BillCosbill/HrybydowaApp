@@ -1,5 +1,6 @@
 package pl.edu.pb.wi.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pl.edu.pb.wi.dao.entity.Book;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pb.wi.services.BookService;
@@ -11,6 +12,11 @@ import java.util.List;
 public class BookController {
 
     private BookService bookService;
+
+    @Autowired
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @GetMapping("/all")
     public List<Book> getBooks() {
@@ -32,12 +38,12 @@ public class BookController {
         bookService.deleteBook(id);
     }
 
-    @PutMapping("/rentBook")
+    @GetMapping("/rentBook")
     public void rentBook(@RequestParam Long idBook, @RequestParam Long idUser){
         bookService.rentBook(idBook, idUser);
     }
 
-    @PutMapping("/returnBook")
+    @GetMapping("/returnBook")
     public void returnBook(@RequestParam Long idBook, @RequestParam Long idUser){
         bookService.returnBook(idBook, idUser);
     }

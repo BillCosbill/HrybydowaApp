@@ -16,8 +16,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 @Service
 public class BookService {
 
-    BookRepository bookRepository;
-    UserRepository userRepository;
+    private final BookRepository bookRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public BookService(BookRepository bookRepository, UserRepository userRepository) {

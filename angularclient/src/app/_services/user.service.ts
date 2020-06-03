@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../_model/user';
 
-const API_URL = 'http://localhost:8081/api/test/';
+const API_URL = 'http://localhost:8080/api/test/';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +15,15 @@ export class UserService {
   private giveAdminUrl: string;
   private giveUserUrl: string;
   private findUserUrl: string;
+  private api: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8081/users';
-    this.deleteUrl = 'http://localhost:8081/userDelete';
-    this.giveAdminUrl = 'http://localhost:8081/giveAdmin';
-    this.giveUserUrl = 'http://localhost:8081/giveUser';
-    this.findUserUrl = 'http://localhost:8081/findUser';
+    this.api = 'http://localhost:8080/api/users'
+    this.usersUrl = this.api + '/all';
+    this.deleteUrl = this.api;
+    this.giveAdminUrl = this.api + '/giveAdmin';
+    this.giveUserUrl = this.api + '/giveUser';
+    this.findUserUrl = this.api;
   }
 
   public findAll(): Observable<User[]> {
@@ -29,7 +31,7 @@ export class UserService {
   }
 
   public delete(id: number){
-    return this.http.get(this.deleteUrl+'?id='+id);
+    return this.http.delete(this.deleteUrl+'?id='+id);
   }
 
   public findUser(id: number){

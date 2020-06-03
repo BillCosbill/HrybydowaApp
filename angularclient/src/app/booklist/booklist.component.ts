@@ -11,7 +11,7 @@ import {TokenStorageService} from '../_services/token-storage.service';
 export class BooklistComponent implements OnInit {
 
   private roles: string[];
-  books: Book[];
+  books: Book[] = [];
   adminLogged = false;
   isLoggedIn = false;
   currentUser: any;
@@ -28,9 +28,17 @@ export class BooklistComponent implements OnInit {
     if (this.isLoggedIn) {
       this.roles = this.currentUser.roles;
       this.adminLogged = this.roles.includes('ROLE_ADMIN');
+
+      this.refreshData();
+
+      this.bookService.findAll().subscribe(el => {
+        el.forEach(book => {
+          this.books.push(book);
+        });
+      })
+
     }
 
-    this.refreshData();
   }
 
   deleteBook(id: number) {

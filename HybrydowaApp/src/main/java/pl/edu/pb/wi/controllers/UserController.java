@@ -34,12 +34,12 @@ public class UserController {
         return userService.findUser(id);
     }
 
-    @PutMapping("/giveAdmin")
+    @GetMapping("/giveAdmin")
     public User giveAdmin(@RequestParam Long id){
         return userService.giveAdmin(id);
     }
 
-    @PutMapping("/giveUser")
+    @GetMapping("/giveUser")
     public User giveUser(@RequestParam Long id){
         return userService.giveUser(id);
     }
