@@ -1,21 +1,10 @@
-package com.example.demo.controllers;
+package com.example.demo.controller;
 
-import com.example.demo.models.*;
-
-import com.example.demo.repository.BookRepository;
-import com.example.demo.repository.RoleRepository;
-import com.example.demo.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -32,8 +21,8 @@ public class TestController {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
 
-        Role role1 = new Role(ERole.ROLE_USER);
-        Role role2 = new Role(ERole.ROLE_ADMIN);
+        Role role1 = new Role(RoleEnum.ROLE_USER);
+        Role role2 = new Role(RoleEnum.ROLE_ADMIN);
 
         Set<Role> user = new HashSet<>();
         Set<Role> admin = new HashSet<>();

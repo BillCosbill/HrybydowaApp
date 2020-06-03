@@ -1,4 +1,4 @@
-package com.example.demo.models;
+package com.example.demo.model;
 
 import javax.persistence.*;
 
@@ -11,13 +11,13 @@ public class Role {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
-    private ERole name;
+    private RoleEnum name;
 
     public Role() {
 
     }
 
-    public Role(ERole name) {
+    public Role(RoleEnum name) {
         this.name = name;
     }
 
@@ -29,11 +29,11 @@ public class Role {
         this.id = id;
     }
 
-    public ERole getName() {
+    public RoleEnum getName() {
         return name;
     }
 
-    public void setName(ERole name) {
+    public void setName(RoleEnum name) {
         this.name = name;
     }
 }

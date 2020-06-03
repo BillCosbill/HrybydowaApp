@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../_model/user';
 
 const API_URL = 'http://localhost:8081/api/test/';
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -28,27 +31,36 @@ export class UserService {
     return this.http.get<User[]>(this.usersUrl);
   }
 
-  public delete(id: number){
-    return this.http.get(this.deleteUrl+'?id='+id);
+  public delete(id: number) {
+    return this.http.get(this.deleteUrl + '?id=' + id);
   }
 
-  public findUser(id: number){
-    return this.http.get<User>(this.findUserUrl+'?id='+id);
+  public findUser(id: number) {
+    return this.http.get<User>(this.findUserUrl + '?id=' + id);
   }
 
-  public giveAdmin(id: number){
-    return this.http.get(this.giveAdminUrl+'?id='+id);
+  public giveAdmin(id: number) {
+    return this.http.get(this.giveAdminUrl + '?id=' + id);
   }
 
-  public giveUser(id: number){
-    return this.http.get(this.giveUserUrl+'?id='+id);
+  public giveUser(id: number) {
+    return this.http.get(this.giveUserUrl + '?id=' + id);
   }
 
   public getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', { responseType: 'text' });
+    return this.http.get(API_URL + 'all', {responseType: 'text'});
   }
 
   public getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', { responseType: 'text' });
+    return this.http.get(API_URL + 'user', {responseType: 'text'});
+  }
+
+  public register(user): Observable<any> {
+    const url = 'http://localhost:8081/user/add';
+    return this.http.post(url, {
+      username: user.username,
+      email: user.email,
+      password: user.password
+    }, httpOptions);
   }
 }
