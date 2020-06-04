@@ -3,7 +3,6 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../_model/user';
 
-const API_URL = 'http://localhost:8080/api/test/';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -15,8 +14,6 @@ export class UserService {
 
   private usersUrl: string;
   private deleteUrl: string;
-  private giveAdminUrl: string;
-  private giveUserUrl: string;
   private findUserUrl: string;
   private giveUrl: string;
   private api: string;
@@ -49,16 +46,16 @@ export class UserService {
   }
 
   public getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', {responseType: 'text'});
+    return this.http.get(this.api + 'all', {responseType: 'text'});
   }
 
   public getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', {responseType: 'text'});
+    return this.http.get(this.api + 'user', {responseType: 'text'});
   }
 
   public register(user): Observable<any> {
-    const url = 'http://localhost:8080/user/add';
-    return this.http.post(url, {
+    console.log('user: ', user);
+    return this.http.post(this.api + '/add', {
       username: user.username,
       email: user.email,
       password: user.password

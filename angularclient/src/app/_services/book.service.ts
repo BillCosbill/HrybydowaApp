@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Book} from '../_model/book';
 import {Observable} from 'rxjs';
@@ -8,39 +8,35 @@ import {Observable} from 'rxjs';
 })
 export class BookService {
   private booksUrl: string;
-  private deleteUrl: string;
-  private rentUrl: string;
-  private returnUrl: string;
-  private api: string;
 
   constructor(private http: HttpClient) {
-    this.api = 'http://localhost:8080/api/books';
-    this.booksUrl = this.api + '/all';
-    this.deleteUrl = this.api;
-    this.rentUrl = '/rentBook';
-    this.returnUrl = '/returnBook';
+    this.booksUrl = 'http://localhost:8080/api/books';
   }
 
   public findAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(this.booksUrl);
+    return this.http.get<Book[]>(this.booksUrl + '/all');
   }
 
-  public save(book: Book) {
-    return this.http.post<Book>(this.booksUrl, book);
+  public addBook(book: Book) {
+    return this.http.post<Book>(this.booksUrl + '/add', book);
   }
 
-  public delete(id: number){
-    return this.http.delete(this.deleteUrl + '?id=' + id);
+  public delete(id: number) {
+    return this.http.delete(this.booksUrl + '/delete' + '?id=' + id);
   }
 
-  public rent(idBook: number, idUser: number) {
-    return this.http.get(this.rentUrl + '?idBook=' + idBook + '&idUser=' + idUser);
+  public rent(bookId: number, userId: number) {
+    return this.http.put(this.booksUrl + '/rent', {
+      userId,
+      bookId
+    });
   }
 
-  public return(idBook: number, idUser: number) {
-    console.log(idBook);
-    console.log(idUser);
-    return this.http.get(this.returnUrl + '?idBook=' + idBook + '&idUser=' + idUser);
+  public return(bookId: number, userId: number) {
+    return this.http.put(this.booksUrl + '/return', {
+      userId,
+      bookId
+    });
   }
 
 

@@ -9,7 +9,14 @@ public class RoleChangeRequest {
 
     public RoleChangeRequest(Long id, String role) {
         this.id = id;
-        this.role.setValue(role);
+        switch (role) {
+            case "ROLE_ADMIN":
+                this.role = RoleEnum.ROLE_ADMIN;
+                break;
+            case "ROLE_USER":
+                this.role = RoleEnum.ROLE_USER;
+                break;
+        }
     }
 
     public RoleEnum getRole() {

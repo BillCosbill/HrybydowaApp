@@ -50,7 +50,7 @@ public class UserController {
         userService.delete(id);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public User addUser(@RequestBody User user) {
         return userService.save(user);
     }
