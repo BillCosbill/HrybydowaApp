@@ -7,14 +7,15 @@ import org.springframework.stereotype.Service;
 import pl.edu.pb.wi.dao.RoleRepository;
 import pl.edu.pb.wi.dao.entity.Role;
 import pl.edu.pb.wi.dao.entity.RoleEnum;
+import pl.edu.pb.wi.serviceInterface.RoleService;
 
 @Service
-public class RoleService {
+public class RoleServiceImpl implements RoleService {
 
     private final RoleRepository roleRepository;
 
     @Autowired
-    public RoleService(RoleRepository roleRepository) {
+    public RoleServiceImpl(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
     }
 

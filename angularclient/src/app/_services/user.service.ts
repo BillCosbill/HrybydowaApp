@@ -11,51 +11,42 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-
   private usersUrl: string;
-  private deleteUrl: string;
-  private findUserUrl: string;
-  private giveUrl: string;
-  private api: string;
 
   constructor(private http: HttpClient) {
-    this.api = 'http://localhost:8080/api/users';
-    this.usersUrl = this.api + '/all';
-    this.deleteUrl = this.api;
-    this.giveUrl = this.api + '/give';
-    this.findUserUrl = this.api;
+    this.usersUrl = 'http://localhost:8080/api/users';
   }
 
   public findAll(): Observable<User[]> {
-    return this.http.get<User[]>(this.usersUrl);
+    return this.http.get<User[]>(this.usersUrl + '/all');
   }
 
   public delete(id: number) {
-    return this.http.delete(this.deleteUrl + '?id=' + id);
+    return this.http.delete(this.usersUrl + '?id=' + id);
   }
 
   public findUser(id: number) {
-    return this.http.get<User>(this.findUserUrl + '?id=' + id);
+    return this.http.get<User>(this.usersUrl + '?id=' + id);
   }
 
   public giveRole(id: number, role: string) {
-    return this.http.put(this.giveUrl, {
+    return this.http.put(this.usersUrl + '/give', {
       id,
       role
     });
   }
 
-  public getPublicContent(): Observable<any> {
-    return this.http.get(this.api + 'all', {responseType: 'text'});
+  public getPublicContent(): Observable<any> { // todo to delete
+    return this.http.get(this.usersUrl + 'all', {responseType: 'text'});
   }
 
-  public getUserBoard(): Observable<any> {
-    return this.http.get(this.api + 'user', {responseType: 'text'});
+  public getUserBoard(): Observable<any> { // todo to delete
+    return this.http.get(this.usersUrl + 'user', {responseType: 'text'});
   }
 
   public register(user): Observable<any> {
     console.log('user: ', user);
-    return this.http.post(this.api + '/add', {
+    return this.http.post(this.usersUrl + '/add', {
       username: user.username,
       email: user.email,
       password: user.password

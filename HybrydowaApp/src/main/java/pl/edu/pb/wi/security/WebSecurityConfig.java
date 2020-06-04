@@ -3,6 +3,7 @@ package pl.edu.pb.wi.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -13,9 +14,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import pl.edu.pb.wi.dao.entity.RoleEnum;
 import pl.edu.pb.wi.security.jwt.AuthEntryPointJwt;
 import pl.edu.pb.wi.security.jwt.AuthTokenFilter;
-import pl.edu.pb.wi.security.services.UserDetailsServiceImpl;
+import pl.edu.pb.wi.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -66,9 +68,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/auth/**", "/api/books/all", "/api/users/*").permitAll()
-                .antMatchers("/api/users/*", "/api/books/*")
-                .hasRole("ADMIN")
+                .antMatchers(
+                        "/api/auth/*",
+                        "/api/books/all",
+                        "/api/books/rent",
+                        "/api/books/return"
+                ).permitAll()
+                .antMatchers(HttpMethod.GET, "/api/users/").permitAll()
+                .antMatchers("/api/users/*", "/api/books/*").hasAuthority(RoleEnum.ROLE_ADMIN.getValue())
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

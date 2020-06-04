@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pb.wi.dao.entity.Book;
 import pl.edu.pb.wi.payload.request.RentalRequest;
-import pl.edu.pb.wi.service.BookService;
+import pl.edu.pb.wi.serviceInterface.BookService;
 
 import java.util.List;
 

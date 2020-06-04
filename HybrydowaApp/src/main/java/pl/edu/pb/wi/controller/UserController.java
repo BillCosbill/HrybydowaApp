@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pb.wi.dao.entity.User;
 import pl.edu.pb.wi.payload.request.RoleChangeRequest;
-import pl.edu.pb.wi.service.UserService;
+import pl.edu.pb.wi.serviceInterface.UserService;
 
 import java.util.List;
 

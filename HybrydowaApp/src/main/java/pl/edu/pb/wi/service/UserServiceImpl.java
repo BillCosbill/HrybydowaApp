@@ -12,19 +12,20 @@ import pl.edu.pb.wi.dao.entity.RoleEnum;
 import pl.edu.pb.wi.dao.entity.User;
 import pl.edu.pb.wi.exception.RoleNotFoundException;
 import pl.edu.pb.wi.payload.request.SignupRequest;
+import pl.edu.pb.wi.serviceInterface.UserService;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private PasswordEncoder encoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.encoder = encoder;

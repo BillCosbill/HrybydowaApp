@@ -8,19 +8,20 @@ import pl.edu.pb.wi.dao.BookRepository;
 import pl.edu.pb.wi.dao.UserRepository;
 import pl.edu.pb.wi.dao.entity.Book;
 import pl.edu.pb.wi.dao.entity.User;
+import pl.edu.pb.wi.serviceInterface.BookService;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
-public class BookService {
+public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
     private final UserRepository userRepository;
 
     @Autowired
-    public BookService(BookRepository bookRepository, UserRepository userRepository) {
+    public BookServiceImpl(BookRepository bookRepository, UserRepository userRepository) {
         this.bookRepository = bookRepository;
         this.userRepository = userRepository;
     }
