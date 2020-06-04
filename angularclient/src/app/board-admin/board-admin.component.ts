@@ -31,11 +31,11 @@ export class BoardAdminComponent implements OnInit {
   }
 
   giveAdmin(id: number) {
-    this.userService.giveAdmin(id).subscribe(result => this.refreshData());
+    this.userService.giveRole(id, 'ROLE_ADMIN').subscribe(result => this.refreshData());
   }
 
   giveUser(id: number) {
-    this.userService.giveUser(id).subscribe(result => this.refreshData());
+    this.userService.giveRole(id, 'ROLE_USER').subscribe(result => this.refreshData());
   }
 
   delete(id: number) {

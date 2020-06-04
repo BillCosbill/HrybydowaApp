@@ -1,17 +1,18 @@
-package pl.edu.pb.wi.controllers;
+package pl.edu.pb.wi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.edu.pb.wi.dao.entity.User;
 import org.springframework.web.bind.annotation.*;
-import pl.edu.pb.wi.services.UserService;
+import pl.edu.pb.wi.dao.entity.User;
+import pl.edu.pb.wi.payload.request.RoleChangeRequest;
+import pl.edu.pb.wi.service.UserService;
 
 import java.util.List;
 
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-    
+
     private UserService userService;
 
     @Autowired
@@ -25,32 +26,32 @@ public class UserController {
     }
 
     @GetMapping
-    public User getUser(@RequestParam Long id){
+    public User getUser(@RequestParam Long id) {
         return userService.getUser(id);
     }
 
     @GetMapping("/findUser")
-    public User findUser(@RequestParam Long id){
+    public User findUser(@RequestParam Long id) {
         return userService.findUser(id);
     }
 
-    @GetMapping("/giveAdmin")
-    public User giveAdmin(@RequestParam Long id){
-        return userService.giveAdmin(id);
+    @PutMapping("/give")
+    public User giveAdmin(@RequestBody RoleChangeRequest roleChangeRequest) {
+        return userService.giveRole(roleChangeRequest.getId(), roleChangeRequest.getRole());
     }
 
-    @GetMapping("/giveUser")
-    public User giveUser(@RequestParam Long id){
-        return userService.giveUser(id);
-    }
+//    @PutMapping("/giveUser")
+//    public User giveUser(@RequestParam Long id) {
+//        return userService.giveUserRole(id);
+//    }
 
     @DeleteMapping
-    public void deleteUser(@RequestParam Long id){
+    public void deleteUser(@RequestParam Long id) {
         userService.delete(id);
     }
 
     @PostMapping
-    public User addUser(@RequestBody User user){
+    public User addUser(@RequestBody User user) {
         return userService.save(user);
     }
 }

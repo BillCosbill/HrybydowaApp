@@ -1,4 +1,4 @@
-package pl.edu.pb.wi.services;
+package pl.edu.pb.wi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

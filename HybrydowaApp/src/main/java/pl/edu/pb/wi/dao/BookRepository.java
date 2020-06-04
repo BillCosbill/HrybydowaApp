@@ -1,8 +1,7 @@
 package pl.edu.pb.wi.dao;
 
-import pl.edu.pb.wi.dao.entity.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
-
+import pl.edu.pb.wi.dao.entity.Book;
 
 import java.util.Optional;
 

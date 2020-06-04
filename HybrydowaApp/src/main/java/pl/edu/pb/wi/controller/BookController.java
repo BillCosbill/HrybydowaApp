@@ -1,12 +1,13 @@
-package pl.edu.pb.wi.controllers;
+package pl.edu.pb.wi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.edu.pb.wi.dao.entity.Book;
 import org.springframework.web.bind.annotation.*;
-import pl.edu.pb.wi.services.BookService;
+import pl.edu.pb.wi.dao.entity.Book;
+import pl.edu.pb.wi.service.BookService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/books")
 public class BookController {
@@ -24,7 +25,7 @@ public class BookController {
     }
 
     @GetMapping
-    public Book getBook(@RequestParam Long id){
+    public Book getBook(@RequestParam Long id) {
         return bookService.getBook(id);
     }
 
@@ -34,17 +35,17 @@ public class BookController {
     }
 
     @DeleteMapping
-    public void deleteBook(@RequestParam Long id){
+    public void deleteBook(@RequestParam Long id) {
         bookService.deleteBook(id);
     }
 
     @GetMapping("/rentBook")
-    public void rentBook(@RequestParam Long idBook, @RequestParam Long idUser){
+    public void rentBook(@RequestParam Long idBook, @RequestParam Long idUser) {
         bookService.rentBook(idBook, idUser);
     }
 
     @GetMapping("/returnBook")
-    public void returnBook(@RequestParam Long idBook, @RequestParam Long idUser){
+    public void returnBook(@RequestParam Long idBook, @RequestParam Long idUser) {
         bookService.returnBook(idBook, idUser);
     }
 
