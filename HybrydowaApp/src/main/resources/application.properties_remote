@@ -7,7 +7,6 @@ spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
 spring.jpa.hibernate.ddl-auto=create
-
 # App properties
-bezkoder.app.jwtSecret = secretKey
-bezkoder.app.jwtExpirationMs= 86400000
+bezkoder.app.jwtSecret=secretKey
+bezkoder.app.jwtExpirationMs=86400000
