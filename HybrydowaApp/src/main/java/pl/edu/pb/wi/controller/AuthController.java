@@ -7,10 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import pl.edu.pb.wi.dao.RoleRepository;
-import pl.edu.pb.wi.dao.UserRepository;
 import pl.edu.pb.wi.dao.entity.Book;
 import pl.edu.pb.wi.payload.request.LoginRequest;
 import pl.edu.pb.wi.payload.response.JwtResponse;
@@ -26,22 +23,16 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    private AuthenticationManager authenticationManager;
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private PasswordEncoder encoder;
-    private JwtUtils jwtUtils;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtils jwtUtils;
 
     @Autowired
-    public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder, JwtUtils jwtUtils) {
+    public AuthController(AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
         this.authenticationManager = authenticationManager;
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.encoder = encoder;
         this.jwtUtils = jwtUtils;
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(

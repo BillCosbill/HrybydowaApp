@@ -3,7 +3,6 @@ package pl.edu.pb.wi.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -68,14 +67,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(
-                        "/api/auth/*",
-                        "/api/books/all",
-                        "/api/books/rent",
-                        "/api/books/return"
-                ).permitAll()
-                .antMatchers(HttpMethod.GET, "/api/users/").permitAll()
-                .antMatchers("/api/users/*", "/api/books/*").hasAuthority(RoleEnum.ROLE_ADMIN.getValue())
+                .antMatchers("/api/auth/login", "/api/books/all")
+                .permitAll()
+                .antMatchers("/api/books/rent", "/api/books/return", "/api/users/find")
+                .hasAnyAuthority(RoleEnum.ROLE_USER.getValue(), RoleEnum.ROLE_ADMIN.getValue())
+                .antMatchers("/api/users/*", "/api/books/*")
+                .hasAuthority(RoleEnum.ROLE_ADMIN.getValue())
                 .anyRequest().authenticated();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

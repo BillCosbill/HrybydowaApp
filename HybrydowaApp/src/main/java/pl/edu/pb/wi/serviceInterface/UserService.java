@@ -8,9 +8,7 @@ import java.util.List;
 public interface UserService {
     List<User> findAll();
 
-    User getUser(Long id);
-
-    User findUser(Long id);
+    User findById(Long id);
 
     User giveRole(Long id, RoleEnum role);
 

@@ -45,8 +45,8 @@ export class BoardAdminComponent implements OnInit {
   giveUser(id: number) {
     this.userService.giveRole(id, 'ROLE_USER').subscribe(() => {
       if (id === this.tokenStorageService.getUser().id) {
-        this.appComponent.logout();
         this.router.navigate(['/home']);
+        this.appComponent.logout();
       } else {
         this.refreshData();
       }
@@ -56,8 +56,8 @@ export class BoardAdminComponent implements OnInit {
   delete(id: number) {
     this.userService.delete(id).subscribe(() => {
         if (id === this.tokenStorageService.getUser().id) {
-          this.appComponent.logout();
           this.router.navigate(['/home']);
+          this.appComponent.logout();
         } else {
           this.refreshData();
         }
@@ -68,7 +68,6 @@ export class BoardAdminComponent implements OnInit {
   private refreshData() {
     this.userService.findAll().subscribe(data => {
       this.users = data;
-      console.log('user_roles:', this.users[0].roles);
     });
   }
 }

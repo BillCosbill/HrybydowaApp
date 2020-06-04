@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/books")
 public class BookController {
 
-    private BookService bookService;
+    private final BookService bookService;
 
     @Autowired
     public BookController(BookService bookService) {
@@ -25,19 +25,9 @@ public class BookController {
         return bookService.getBooks();
     }
 
-    @GetMapping // todo probably unused
-    public Book getBook(@RequestParam Long id) {
-        return bookService.getBook(id);
-    }
-
     @PostMapping("/add")
     public Book addBook(@RequestBody Book book) {
         return bookService.addBook(book);
-    }
-
-    @DeleteMapping("/delete")
-    public void deleteBook(@RequestParam Long id) {
-        bookService.deleteBook(id);
     }
 
     @PutMapping("/rent")
@@ -50,4 +40,8 @@ public class BookController {
         bookService.returnBook(rentalRequest.getBookId(), rentalRequest.getUserId());
     }
 
+    @DeleteMapping("/delete")
+    public void deleteBook(@RequestParam Long id) {
+        bookService.deleteBook(id);
+    }
 }

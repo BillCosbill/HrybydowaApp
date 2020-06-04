@@ -21,19 +21,8 @@ export class UserService {
     return this.http.get<User[]>(this.usersUrl + '/all');
   }
 
-  public delete(id: number) {
-    return this.http.delete(this.usersUrl + '?id=' + id);
-  }
-
   public findUser(id: number) {
-    return this.http.get<User>(this.usersUrl + '?id=' + id);
-  }
-
-  public giveRole(id: number, role: string) {
-    return this.http.put(this.usersUrl + '/give', {
-      id,
-      role
-    });
+    return this.http.get<User>(this.usersUrl + '/find' + '?id=' + id);
   }
 
   public getPublicContent(): Observable<any> { // todo to delete
@@ -51,5 +40,16 @@ export class UserService {
       email: user.email,
       password: user.password
     }, httpOptions);
+  }
+
+  public giveRole(id: number, role: string) {
+    return this.http.put(this.usersUrl + '/give', {
+      id,
+      role
+    });
+  }
+
+  public delete(id: number) {
+    return this.http.delete(this.usersUrl + '/delete' + '?id=' + id);
   }
 }
