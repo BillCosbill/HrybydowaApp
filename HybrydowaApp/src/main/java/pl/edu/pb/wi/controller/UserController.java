@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
@@ -25,14 +25,14 @@ public class UserController {
         return userService.findAll();
     }
 
-    @GetMapping
-    public User getUser(@RequestParam Long id) {
-        return userService.getUser(id);
+    @GetMapping("/find")
+    public User findUser(@RequestParam Long id) {
+        return userService.findById(id);
     }
 
-    @GetMapping("/findUser")
-    public User findUser(@RequestParam Long id) {
-        return userService.findUser(id);
+    @PostMapping("/add")
+    public User addUser(@RequestBody User user) {
+        return userService.save(user);
     }
 
     @PutMapping("/give")
@@ -40,18 +40,8 @@ public class UserController {
         return userService.giveRole(roleChangeRequest.getId(), roleChangeRequest.getRole());
     }
 
-//    @PutMapping("/giveUser")
-//    public User giveUser(@RequestParam Long id) {
-//        return userService.giveUserRole(id);
-//    }
-
-    @DeleteMapping
+    @DeleteMapping("/delete")
     public void deleteUser(@RequestParam Long id) {
         userService.delete(id);
-    }
-
-    @PostMapping("/add")
-    public User addUser(@RequestBody User user) {
-        return userService.save(user);
     }
 }

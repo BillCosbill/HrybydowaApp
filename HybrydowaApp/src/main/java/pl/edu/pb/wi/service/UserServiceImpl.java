@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private PasswordEncoder encoder;
+    private final PasswordEncoder encoder;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder) {
@@ -35,24 +35,8 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    public User getUser(Long id) {
+    public User findById(Long id) {
         return userRepository.findById(id).orElse(null);
-    }
-
-    public boolean existsByUsername(String username) {
-        return userRepository.existsByUsername(username);
-    }
-
-    public User findUser(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
-
-    public boolean existsByEmail(String email) {
-        return userRepository.existsByEmail(email);
-    }
-
-    public void deleteUser(User user) {
-        userRepository.delete(user);
     }
 
     public void register(SignupRequest signupRequest) throws RoleNotFoundException {
@@ -111,14 +95,6 @@ public class UserServiceImpl implements UserService {
             password.append(random.nextInt(90) + 35);
         }
         return password.toString();
-    }
-
-    public void giveRole(User user, RoleEnum role) { // todo probably should be deleted
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findByName(role).get());
-        user.setRoles(roles);
-
-        userRepository.save(user);
     }
 
     public User giveRole(Long id, RoleEnum roleEnum) {
