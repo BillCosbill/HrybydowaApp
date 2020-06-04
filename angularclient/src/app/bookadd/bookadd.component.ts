@@ -20,7 +20,7 @@ export class BookaddComponent {
   }
 
   onSubmit() {
-    this.bookService.save(this.book).subscribe(result => this.goToBooksList());
+    this.bookService.addBook(this.book).subscribe(() => this.goToBooksList());
   }
 
   goToBooksList() {

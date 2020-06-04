@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Book} from '../_model/book';
 import {BookService} from '../_services/book.service';
 import {TokenStorageService} from '../_services/token-storage.service';
@@ -11,14 +11,15 @@ import {TokenStorageService} from '../_services/token-storage.service';
 export class BooklistComponent implements OnInit {
 
   private roles: string[];
-  books: Book[];
+  books: Book[] = [];
   adminLogged = false;
   isLoggedIn = false;
   currentUser: any;
 
   searchText;
 
-  constructor(private bookService: BookService, private tokenStorageService: TokenStorageService) { }
+  constructor(private bookService: BookService, private tokenStorageService: TokenStorageService) {
+  }
 
   ngOnInit() {
     this.currentUser = this.tokenStorageService.getUser();
@@ -28,13 +29,14 @@ export class BooklistComponent implements OnInit {
     if (this.isLoggedIn) {
       this.roles = this.currentUser.roles;
       this.adminLogged = this.roles.includes('ROLE_ADMIN');
+
+      this.refreshData();
     }
 
-    this.refreshData();
   }
 
   deleteBook(id: number) {
-    this.bookService.delete(id).subscribe(result => this.refreshData());
+    this.bookService.delete(id).subscribe(() => this.refreshData());
   }
 
 
@@ -45,7 +47,7 @@ export class BooklistComponent implements OnInit {
   }
 
   rent(idBook: number) {
-    this.bookService.rent(idBook, this.currentUser.id).subscribe(result => this.refreshData());
+    this.bookService.rent(idBook, this.currentUser.id).subscribe(() => this.refreshData());
     this.tokenStorageService.saveUser(this.currentUser);
     this.tokenStorageService.getUser();
   }

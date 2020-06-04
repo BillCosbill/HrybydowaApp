@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../_services/user.service';
 import {User} from '../_model/user';
+import {TokenStorageService} from '../_services/token-storage.service';
+import {Router} from '@angular/router';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-board-admin',
@@ -13,7 +16,12 @@ export class BoardAdminComponent implements OnInit {
 
   searchText;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private tokenStorageService: TokenStorageService,
+    private router: Router,
+    private appComponent: AppComponent
+  ) {
   }
 
   ngOnInit() {
@@ -31,15 +39,30 @@ export class BoardAdminComponent implements OnInit {
   }
 
   giveAdmin(id: number) {
-    this.userService.giveAdmin(id).subscribe(result => this.refreshData());
+    this.userService.giveRole(id, 'ROLE_ADMIN').subscribe(() => this.refreshData());
   }
 
   giveUser(id: number) {
-    this.userService.giveUser(id).subscribe(result => this.refreshData());
+    this.userService.giveRole(id, 'ROLE_USER').subscribe(() => {
+      if (id === this.tokenStorageService.getUser().id) {
+        this.appComponent.logout();
+        this.router.navigate(['/home']);
+      } else {
+        this.refreshData();
+      }
+    });
   }
 
   delete(id: number) {
-    this.userService.delete(id).subscribe(result => this.refreshData());
+    this.userService.delete(id).subscribe(() => {
+        if (id === this.tokenStorageService.getUser().id) {
+          this.appComponent.logout();
+          this.router.navigate(['/home']);
+        } else {
+          this.refreshData();
+        }
+      }
+    );
   }
 
   private refreshData() {

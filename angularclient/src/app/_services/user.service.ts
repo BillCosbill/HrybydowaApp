@@ -3,7 +3,6 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../_model/user';
 
-const API_URL = 'http://localhost:8081/api/test/';
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
@@ -15,16 +14,16 @@ export class UserService {
 
   private usersUrl: string;
   private deleteUrl: string;
-  private giveAdminUrl: string;
-  private giveUserUrl: string;
   private findUserUrl: string;
+  private giveUrl: string;
+  private api: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8081/users';
-    this.deleteUrl = 'http://localhost:8081/userDelete';
-    this.giveAdminUrl = 'http://localhost:8081/giveAdmin';
-    this.giveUserUrl = 'http://localhost:8081/giveUser';
-    this.findUserUrl = 'http://localhost:8081/findUser';
+    this.api = 'http://localhost:8080/api/users';
+    this.usersUrl = this.api + '/all';
+    this.deleteUrl = this.api;
+    this.giveUrl = this.api + '/give';
+    this.findUserUrl = this.api;
   }
 
   public findAll(): Observable<User[]> {
@@ -32,32 +31,31 @@ export class UserService {
   }
 
   public delete(id: number) {
-    return this.http.get(this.deleteUrl + '?id=' + id);
+    return this.http.delete(this.deleteUrl + '?id=' + id);
   }
 
   public findUser(id: number) {
     return this.http.get<User>(this.findUserUrl + '?id=' + id);
   }
 
-  public giveAdmin(id: number) {
-    return this.http.get(this.giveAdminUrl + '?id=' + id);
-  }
-
-  public giveUser(id: number) {
-    return this.http.get(this.giveUserUrl + '?id=' + id);
+  public giveRole(id: number, role: string) {
+    return this.http.put(this.giveUrl, {
+      id,
+      role
+    });
   }
 
   public getPublicContent(): Observable<any> {
-    return this.http.get(API_URL + 'all', {responseType: 'text'});
+    return this.http.get(this.api + 'all', {responseType: 'text'});
   }
 
   public getUserBoard(): Observable<any> {
-    return this.http.get(API_URL + 'user', {responseType: 'text'});
+    return this.http.get(this.api + 'user', {responseType: 'text'});
   }
 
   public register(user): Observable<any> {
-    const url = 'http://localhost:8081/user/add';
-    return this.http.post(url, {
+    console.log('user: ', user);
+    return this.http.post(this.api + '/add', {
       username: user.username,
       email: user.email,
       password: user.password

@@ -5,7 +5,7 @@
         <a class="nav-link" routerLink="home">Home </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="isLoggedIn" routerLink="books">Books </a>
+        <a *ngIf="isLoggedIn" class="nav-link" routerLink="books">Books </a>
       </li>
       <li class="nav-item">
         <a *ngIf="adminLogged" class="nav-link" routerLink="books/add">Add book </a>
@@ -17,7 +17,7 @@
         <a class="nav-link" routerLink="admin">Admin Board</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+        <a *ngIf="isLoggedIn" class="nav-link" routerLink="user">User</a>
       </li>
     </ul>
 
