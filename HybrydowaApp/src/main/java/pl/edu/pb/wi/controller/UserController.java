@@ -3,7 +3,9 @@ package pl.edu.pb.wi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pb.wi.dao.entity.User;
+import pl.edu.pb.wi.exception.RoleNotFoundException;
 import pl.edu.pb.wi.payload.request.RoleChangeRequest;
+import pl.edu.pb.wi.payload.request.SignupRequest;
 import pl.edu.pb.wi.serviceInterface.UserService;
 
 import java.util.List;
@@ -31,8 +33,8 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public User addUser(@RequestBody User user) {
-        return userService.save(user);
+    public User addUser(@RequestBody SignupRequest signupRequest) throws RoleNotFoundException {
+        return userService.register(signupRequest);
     }
 
     @PutMapping("/give")

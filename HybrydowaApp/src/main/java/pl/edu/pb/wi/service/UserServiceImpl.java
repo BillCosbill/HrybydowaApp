@@ -3,6 +3,7 @@ package pl.edu.pb.wi.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.edu.pb.wi.dao.RoleRepository;
@@ -12,6 +13,7 @@ import pl.edu.pb.wi.dao.entity.RoleEnum;
 import pl.edu.pb.wi.dao.entity.User;
 import pl.edu.pb.wi.exception.RoleNotFoundException;
 import pl.edu.pb.wi.payload.request.SignupRequest;
+import pl.edu.pb.wi.payload.response.MessageResponse;
 import pl.edu.pb.wi.serviceInterface.UserService;
 
 import java.util.*;
@@ -39,7 +41,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public void register(SignupRequest signupRequest) throws RoleNotFoundException {
+    public User register(SignupRequest signupRequest) throws RoleNotFoundException {
         if (signupRequest.getPassword().isEmpty()) {
             signupRequest.setPassword(generatePassword());
         }
@@ -86,6 +88,7 @@ public class UserServiceImpl implements UserService {
 
         user.setRoles(roles);
         userRepository.save(user);
+        return user;
     }
 
     private String generatePassword() {
