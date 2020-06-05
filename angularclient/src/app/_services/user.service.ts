@@ -33,7 +33,7 @@ export class UserService {
     return this.http.get(this.usersUrl + 'user', {responseType: 'text'});
   }
 
-  public register(user): Observable<any> {
+  public add(user): Observable<any> {
     console.log('user: ', user);
     return this.http.post(this.usersUrl + '/add', {
       username: user.username,

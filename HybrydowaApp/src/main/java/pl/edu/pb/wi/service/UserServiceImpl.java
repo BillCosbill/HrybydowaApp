@@ -118,6 +118,13 @@ public class UserServiceImpl implements UserService {
     }
 
     public User save(User user) {
+        if (user.getRoles().isEmpty()) {
+            Set<Role> roles = new HashSet<>();
+            Optional<Role> role = roleRepository.findByName(RoleEnum.ROLE_USER);
+
+            role.ifPresent(roles::add);
+            user.setRoles(roles);
+        }
         return userRepository.save(user);
     }
 
