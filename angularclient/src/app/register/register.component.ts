@@ -9,8 +9,8 @@ import {UserService} from '../_services/user.service';
 })
 export class RegisterComponent implements OnInit {
   form: any = {};
-  isSuccessful = false;
-  isSignUpFailed = false;
+  wasCreationSuccessful = false;
+  hasCreationFailed = false;
   errorMessage = '';
 
   constructor(private authService: AuthService,
@@ -22,15 +22,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.register(this.form).subscribe(
+    console.log('this.form: ', this.form);
+    this.userService.add(this.form).subscribe(
       data => {
-        console.log(data);
-        this.isSuccessful = true;
-        this.isSignUpFailed = false;
+        console.log('data:', data);
+        this.wasCreationSuccessful = true;
+        this.hasCreationFailed = false;
       },
       err => {
         this.errorMessage = err.error.message;
-        this.isSignUpFailed = true;
+        this.hasCreationFailed = true;
       }
     );
   }

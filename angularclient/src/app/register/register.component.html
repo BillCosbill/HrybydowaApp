@@ -3,7 +3,7 @@
     <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card"/>
 
 
-    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <form #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" *ngIf="!wasCreationSuccessful" name="form" novalidate>
 
       <div class="form-group">
         <label for="username">Username</label>
@@ -49,14 +49,14 @@
         <button class="btn btn-primary btn-block">Add user</button>
       </div>
 
-      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+      <div *ngIf="f.submitted && hasCreationFailed" class="alert alert-warning">
         Adding user failed! <br/>{{ errorMessage }}
       </div>
 
     </form>
 
 
-    <div class="alert alert-success" *ngIf="isSuccessful">
+    <div *ngIf="wasCreationSuccessful" class="alert alert-success">
       User created successfully.
     </div>
   </div>
