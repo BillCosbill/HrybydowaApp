@@ -13,7 +13,6 @@ import {AppComponent} from '../app.component';
 export class BoardAdminComponent implements OnInit {
 
   users: User[] = [];
-
   searchText;
 
   constructor(
@@ -30,12 +29,6 @@ export class BoardAdminComponent implements OnInit {
 
   makePrettyRoleName(name: string) {
     return name.substr(5).toLowerCase();
-  }
-
-  private checkIfAdmins() {
-    this.users.forEach(x => {
-      x.isAdmin = Object.values(x.roles[0]).includes('ROLE_ADMIN');
-    });
   }
 
   giveAdmin(id: number) {
