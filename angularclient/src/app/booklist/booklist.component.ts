@@ -30,8 +30,8 @@ export class BooklistComponent implements OnInit {
       this.roles = this.currentUser.roles;
       this.adminLogged = this.roles.includes('ROLE_ADMIN');
 
-      this.refreshData();
     }
+    this.refreshData();
 
   }
 
