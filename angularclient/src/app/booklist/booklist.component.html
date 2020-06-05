@@ -13,7 +13,7 @@
         <th scope="col">Author</th>
         <th scope="col">Publication year</th>
         <th scope="col">Available</th>
-        <th scope="col">Options</th>
+        <th scope="col" *ngIf="isLoggedIn">Options</th>
       </tr>
       </thead>
       <tbody>
@@ -23,8 +23,8 @@
         <td>{{ book.author }}</td>
         <td>{{ book.publicationYear }}</td>
         <td>{{ book.available }}</td>
-        <td>
-          <button class="btn btn-info" *ngIf="book.available" (click)="rent(book.id)">Rent</button>
+        <td *ngIf="isLoggedIn">
+          <button class="btn btn-info" *ngIf="book.available && isLoggedIn" (click)="rent(book.id)">Rent</button>
           <button class="btn btn-info" *ngIf="adminLogged" (click)="deleteBook(book.id)">Delete</button>
         </td>
       </tr>
