@@ -8,7 +8,6 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { BoardUserComponent } from './board-user/board-user.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
@@ -27,7 +26,6 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     HomeComponent,
     ProfileComponent,
     BoardAdminComponent,
-    BoardUserComponent,
     BooklistComponent,
     BookaddComponent,
     MybooksComponent

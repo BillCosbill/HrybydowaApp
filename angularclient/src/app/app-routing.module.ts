@@ -4,7 +4,6 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
-import {BoardUserComponent} from './board-user/board-user.component';
 import {BoardAdminComponent} from './board-admin/board-admin.component';
 import {AdminguardService} from './guards/adminguard.service';
 import {UserguardService} from './guards/userguard.service';
@@ -20,7 +19,6 @@ const routes: Routes = [
   {path: 'books/add', component: BookaddComponent, canActivate: [AdminguardService]},
   {path: 'profile', component: ProfileComponent, canActivate: [UserguardService]},
   {path: 'books/my', component: MybooksComponent, canActivate: [UserguardService]},
-  {path: 'user', component: BoardUserComponent, canActivate: [UserguardService]},
   {path: 'admin', component: BoardAdminComponent, canActivate: [AdminguardService]},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
