@@ -10,7 +10,7 @@ export class BookService {
   private booksUrl: string;
 
   constructor(private http: HttpClient) {
-    this.booksUrl = 'http://localhost:8080/api/books';
+    this.booksUrl = 'https://hybrydowabiblioteka.azurewebsites.net/api/books';
   }
 
   public findAll(): Observable<Book[]> {

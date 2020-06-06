@@ -12,6 +12,7 @@ import {BookaddComponent} from './bookadd/bookadd.component';
 import {MybooksComponent} from './mybooks/mybooks.component';
 
 const routes: Routes = [
+  {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'user/add', component: RegisterComponent, canActivate: [AdminguardService]},
@@ -20,11 +21,11 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [UserguardService]},
   {path: 'books/my', component: MybooksComponent, canActivate: [UserguardService]},
   {path: 'admin', component: BoardAdminComponent, canActivate: [AdminguardService]},
-  {path: '', redirectTo: 'home', pathMatch: 'full'}
+  {path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

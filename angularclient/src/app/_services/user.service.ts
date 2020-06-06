@@ -14,7 +14,7 @@ export class UserService {
   private usersUrl: string;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8080/api/users';
+    this.usersUrl = 'https://hybrydowabiblioteka.azurewebsites.net/api/users';
   }
 
   public findAll(): Observable<User[]> {

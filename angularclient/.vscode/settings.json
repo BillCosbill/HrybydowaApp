@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/46d81946-0949-4d69-b415-f256c68a7c97/resourceGroups/HybrydowaApp/providers/Microsoft.Web/sites/biblioteka-hybrydowa",
+    "appService.deploySubpath": "."
+}
